@@ -6,10 +6,7 @@ import './BestBooks.css';
 import axios from 'axios'
 
 
-// title: 'tribleSix',
-// description: 'did you ever heard about ELFs you might not ',
-// status: 'available',
-// email: 'tariq.Etoum@Etoum.com'
+
 class MyFavoriteBooks extends React.Component {
   constructor(props) {
 
@@ -33,16 +30,8 @@ class MyFavoriteBooks extends React.Component {
     console.log('sdfsdgfhg',this.state.BookData);
     }
   
-  
-              
-                
-      //   function mapping (){
-      // this.state.BookData.map(element){
-      //           return element
-      //         }
-      //       }
-                
-            
+
+
   render() {
    
               return(
@@ -55,25 +44,33 @@ class MyFavoriteBooks extends React.Component {
           This is a collection of my favorite books
         </p>
        
+   {this.state.BookData.map((ele,index)=>{
+        return(
 
-        <Card style={{ width: '18rem' }}>
+          <Card key={index} style={{ width: '18rem' }}>
         <Card.Body>
-          <Card.Title>{this.state.BookData.title}
+          <Card.Title>{ele.title}
           </Card.Title>
           <Card.Text>
-          {this.state.BookData.description}
+          {ele.description}
           </Card.Text>
           <Card.Text>
-          {this.state.BookData.status}
+          {ele.status}
           </Card.Text>
           <Card.Text>
-          {this.state.BookData.email}
+          {ele.email}
           </Card.Text>
-        
-          {/* TODO: add a `LoginButton` component here that will log the user in with Auth0 */}
+         
         </Card.Body>
       </Card>
+        )
+      })
+    }
       </Jumbotron>
+
+   
+
+        
       </>
     )
   }
