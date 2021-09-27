@@ -5,25 +5,34 @@ import BestBooks from './BestBooks';
 import LoginButton from './components/LoginButton';
 import Profile from './components/Profile';
 
-import { withAuth0 } from "@auth0/auth0-react";
-
-
-
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 
-class App extends React.Component {
+import { withAuth0 } from "@auth0/auth0-react";
 
+
+
+
+class App extends React.Component {
+ 
+
+
+
+
+
+  
   render() {
-    console.log('app', this.props);
+    // console.log('app', this.props);
     let isAuthenticated = this.props.auth0.isAuthenticated;
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated);
 
     return (
       <>
+
+
         <Router>
           {/* <IsLoadingAndError> */}
           <Header />
@@ -37,7 +46,7 @@ class App extends React.Component {
                 isAuthenticated ? <BestBooks/>:<LoginButton/>
               }
 
-
+{/* http://localhost:3002/books?email=d.alatoum@gmail.com */}
 
 
             </Route>
