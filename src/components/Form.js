@@ -18,6 +18,7 @@ class AddingForm extends Component {
                         <Form.Label>Status</Form.Label>
                         <Form.Control type="text" name='status' placeholder="Enter Status" />
                         <input type="submit" value="Add Book" />
+                        
                     </Form.Group>
                 </Form>
             </>

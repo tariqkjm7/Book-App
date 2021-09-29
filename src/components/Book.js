@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-class Weather extends React.Component {
-  deleteBookHandler = () =>{this.props.DeleteBook(this.props.book._id)}
+class Books extends React.Component {
+ 
   render() {
     return (
       <>
@@ -19,7 +19,7 @@ class Weather extends React.Component {
             <Card.Text>
               {this.props.book.status}
             </Card.Text>
-            <Button onClick={this.deleteBookHandler} >Delete</Button>
+            <Button> Delete </Button>
           </Card.Body>
         </Card>         
       </>
@@ -27,4 +27,4 @@ class Weather extends React.Component {
   }
 }
 
-export default Weather;
+export default Books;

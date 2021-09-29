@@ -30,31 +30,37 @@ class MyFavoriteBooks extends React.Component {
 
       BookData: BData.data
 
+
     })
     console.log('sdfsdgfhg', this.state.BookData);
   }
 
 
-
-
-
    addBook = async(e) => {
     e.preventDefault();
     console.log('from add book ')
-    const {user} = this.props.auth0;
-    console.log(user)
 
        let bookFormData =  {
      title : e.target.title.value,
      description :e.target.description.value,
-     status : e.target.status.value
+     status : e.target.status.value,
+     email:this.props.auth0.user.email
     }
     let newBook = await axios.post(`${process.env.REACT_APP_SERVER}/addBook`, bookFormData)
     this.setState({
       BookData: newBook.data
     })
-    console.log('aaaaaaaaaaaaa',newBook)
+    console.log('aaaaaaaaaaaaa',this.state.BookData)
 
+  }
+
+  deleteBook = async (id)=>{
+    let deleteOne = await axios.delete(`${process.env.REACT_APP_SERVER}/deleteBooks?bookID=${id}&email=${this.props.auth0.user.email}`)
+    console.log(deleteOne);
+   await this.setState({
+      BookData:deleteOne.data
+    })
+    console.log(this.state.BookData);
   }
 
   render() {
@@ -81,7 +87,8 @@ class MyFavoriteBooks extends React.Component {
 
         {
           this.state.BookData.map((element, index) => {
-            return <CardCom element1={element} key={index} />
+            return <CardCom element1={element} key={index} 
+             DeleteBook={this.deleteBook} />
 
           })
         }

@@ -1,9 +1,12 @@
 import React from 'react';
 
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 class CardCom extends React.Component {
+
  render(){
+     console.log();
 return(
 <>
 <Card key={this.props.element1.index} style={{ width: '18rem' }}>
@@ -19,6 +22,10 @@ return(
         <Card.Text>
             {this.props.element1.email}
         </Card.Text>
+
+        <Button onClick={()=>{this.props.DeleteBook(this.props.element1._id)}}> delete </Button>
+            
+
 
     </Card.Body>
 </Card>
