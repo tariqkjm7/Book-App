@@ -8,6 +8,8 @@ import { withAuth0 } from "@auth0/auth0-react";
 import CardCom from './components/CardCom'
 import Form from './components/Form';
 import Book from './components/Book';
+import UpdateBook from './components/UpdateBook';
+
 
 
 class MyFavoriteBooks extends React.Component {
@@ -16,7 +18,10 @@ class MyFavoriteBooks extends React.Component {
     super(props);
     this.state = {
       BookData: [],
-      showBookInfo:false
+      showBookInfo:false,
+      showUpdateForm:false,
+      updatedBook:{}
+
     }
   }
 
@@ -63,6 +68,35 @@ class MyFavoriteBooks extends React.Component {
     console.log(this.state.BookData);
   }
 
+  UpdateBook = async (bookInfo)=>{
+  //   let update = await axios.delete(`${process.env.REACT_APP_SERVER}/deleteBooks?bookID=${id}&email=${this.props.auth0.user.email}`)
+  //   console.log(deleteOne);
+  //  await this.setState({
+  //     BookData:deleteOne.data
+  //   })
+     console.log(bookInfo);
+  
+ await this.setState({
+    showUpdateForm:true,
+    updatedBook:bookInfo
+  })
+
+  }
+  sendFun = async (e)=>{
+    e.preventDefault();
+    let bookfromInfo = {
+      title:e.target.title.value,
+      description:e.target.description.value,
+      status:e.target.status.value,
+      id:this.state.updatedBook._id,
+      email:this.props.auth0.user.email
+    }
+    console.log(bookfromInfo);
+    let newData = await axios.put(`${process.env.REACT_APP_SERVER}/update` ,bookfromInfo)
+    await this.setState({
+      BookData:newData.data
+    })
+  }
   render() {
 
 
@@ -86,12 +120,25 @@ class MyFavoriteBooks extends React.Component {
           })}
 
         {
+          
           this.state.BookData.map((element, index) => {
             return <CardCom element1={element} key={index} 
-             DeleteBook={this.deleteBook} />
+             DeleteBook={this.deleteBook} 
+             updateBook = {this.UpdateBook}
+             
+              />
 
+          
           })
-        }
+        } 
+         {
+              this.state.showUpdateForm &&
+              <UpdateBook
+              Binfo = {this.state.updatedBook}
+              sendFun = {this.sendFun}
+              />
+            }
+
       </>
     )
   }
