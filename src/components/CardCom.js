@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 class CardCom extends React.Component {
 
  render(){
-     console.log();
 return(
 <>
 <Card key={this.props.element1.index} style={{ width: '18rem' }}>
@@ -24,8 +23,7 @@ return(
         </Card.Text>
 
         <Button onClick={()=>{this.props.DeleteBook(this.props.element1._id)}}> delete </Button>
-            
-
+        <Button onClick={()=>{this.props.updateBook(this.props.element1)}}> Update </Button>
 
     </Card.Body>
 </Card>
