@@ -38,7 +38,6 @@ class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path="/">
-              {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             
            
               
@@ -46,11 +45,9 @@ class App extends React.Component {
                 isAuthenticated ? <BestBooks/>:<LoginButton/>
               }
 
-{/* http://localhost:3002/books?email=d.alatoum@gmail.com */}
 
 
             </Route>
-            {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
             <Route exact path="/Profile">
               <Profile/>
             </Route>
