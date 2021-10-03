@@ -28,7 +28,7 @@ class MyFavoriteBooks extends React.Component {
   componentDidMount = async () => {
     let emaill = this.props.auth0.user.email
     //http://localhost:3002/books?email=d.alatoum@gmail.com
-    let BUrl = `http://localhost:3002/books?email=${emaill}`;
+    let BUrl = `${process.env.REACT_APP_SERVER}/books?email=${emaill}`;
     let BData = await axios.get(BUrl);
     // console.log(MData);
     await this.setState({
